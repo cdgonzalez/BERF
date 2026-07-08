@@ -1,0 +1,78 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Module:
+%   Layout Engine
+%
+% Description:
+%   Defines page geometry, spacing tokens, layout rules and
+%   document-wide configuration.
+%
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% Page Geometry
+%------------------------------------------------------------------------------
+
+\geometry{
+    top=1.6cm,
+    bottom=1.6cm,
+    left=1.8cm,
+    right=1.8cm
+}
+
+%------------------------------------------------------------------------------
+% Spacing Tokens
+%------------------------------------------------------------------------------
+
+\newlength{\cvSpacingXS}
+\setlength{\cvSpacingXS}{2mm}
+
+\newlength{\cvSpacingSM}
+\setlength{\cvSpacingSM}{4mm}
+
+\newlength{\cvSpacingMD}
+\setlength{\cvSpacingMD}{6mm}
+
+\newlength{\cvSpacingLG}
+\setlength{\cvSpacingLG}{8mm}
+
+\newlength{\cvSpacingXL}
+\setlength{\cvSpacingXL}{12mm}
+
+\newlength{\cvSpacingXXL}
+\setlength{\cvSpacingXXL}{16mm}
+
+%------------------------------------------------------------------------------
+% Semantic Layout Rules
+%------------------------------------------------------------------------------
+
+\let\cvHeaderGap\cvSpacingLG
+\let\cvSectionGap\cvSpacingXL
+\let\cvParagraphGap\cvSpacingSM
+\let\cvJobGap\cvSpacingLG
+\let\cvProjectGap\cvSpacingLG
+\let\cvListGap\cvSpacingXS
+
+%------------------------------------------------------------------------------
+% Document Defaults
+%------------------------------------------------------------------------------
+
+\setstretch{1.08}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{\cvParagraphGap}
+
+%------------------------------------------------------------------------------
+% Hyperref Defaults
+%------------------------------------------------------------------------------
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=cvAccent,
+    urlcolor=cvLink,
+    citecolor=cvAccent,
+    pdfborder={0 0 0},
+    breaklinks=true
+}
