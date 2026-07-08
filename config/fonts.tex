@@ -1,0 +1,73 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Module:
+%   Typography Engine
+%
+% Description:
+%   Defines the global typography system for the framework.
+%
+% Author: Carlos Daniel González Ruiz
+%
+%==============================================================================
+
+%==============================================================================
+% Font Families
+%==============================================================================
+
+\setmainfont{TeX Gyre Heros}
+\setmonofont{Inconsolata}
+
+%==============================================================================
+% Typography Tokens
+%==============================================================================
+
+\newcommand{\cvNameSize}{24}
+\newcommand{\cvTitleSize}{13}
+
+\newcommand{\cvSectionSize}{11}
+
+\newcommand{\cvCompanySize}{10.5}
+
+\newcommand{\cvBodySize}{10}
+
+\newcommand{\cvMetaSize}{9}
+
+\newcommand{\cvSmallSize}{8}
+
+%==============================================================================
+% Typography Styles
+%==============================================================================
+
+\NewDocumentCommand{\cvNameStyle}{}{%
+    \fontsize{\cvNameSize}{28}\selectfont
+    \bfseries
+}
+
+\NewDocumentCommand{\cvTitleStyle}{}{%
+    \fontsize{\cvTitleSize}{16}\selectfont
+}
+
+\NewDocumentCommand{\cvSectionStyle}{}{%
+    \fontsize{\cvSectionSize}{14}\selectfont
+    \bfseries
+}
+
+\NewDocumentCommand{\cvCompanyStyle}{}{%
+    \fontsize{\cvCompanySize}{13}\selectfont
+    \bfseries
+}
+
+\NewDocumentCommand{\cvBodyStyle}{}{%
+    \fontsize{\cvBodySize}{12}\selectfont
+}
+
+\NewDocumentCommand{\cvMetadataStyle}{}{%
+    \fontsize{\cvMetaSize}{11}\selectfont
+}
+
+\NewDocumentCommand{\cvMonoStyle}{}{%
+    \ttfamily
+    \fontsize{\cvBodySize}{12}\selectfont
+}
