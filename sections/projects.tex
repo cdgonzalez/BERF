@@ -1,0 +1,51 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Section:
+%   Technical Projects & Open Source
+%
+% Description:
+%   Highlights personal technical projects, open-source tools, distributed
+%   systems implementations, and algorithmic explorations.
+%
+% Author:
+%   Carlos Daniel González Ruiz
+%
+%==============================================================================
+
+\cvSection{Proyectos Destacados}
+
+%------------------------------------------------------------------------------
+% Project 1: Distributed Key-Value Store
+%------------------------------------------------------------------------------
+\cvProjectItem
+    {Distributed Key-Value Store}
+    {https://github.com/cdgonzalez/dist-kv}
+    {github.com/cdgonzalez/dist-kv}
+    {\cvTag{Go}\cvTag{Raft}\cvTag{gRPC}\cvTag{Protobuf}\cvTag{Docker}}
+    {2024}
+    {
+        \begin{cvItemize}
+            \item Implementación de un almacén distribuido clave-valor tolerante a particiones de red utilizando el algoritmo de consenso \textbf{Raft}.
+            \item Soporte para replicación de logs con consistencia lineal, snapshots de memoria persistente en disco (LSM-tree minimalista) y membresía dinámica de nodos.
+            \item Suite de pruebas automatizadas simulando particiones de red y caídas de nodos líderes, verificando la corrección del quórum con éxito.
+        \end{cvItemize}
+    }
+
+%------------------------------------------------------------------------------
+% Project 2: High-Performance API Gateway with Rate Limiting
+%------------------------------------------------------------------------------
+\cvProjectItem
+    {High-Performance API Gateway \& Rate Limiter}
+    {https://github.com/cdgonzalez/rate-guard}
+    {github.com/cdgonzalez/rate-guard}
+    {\cvTag{Rust}\cvTag{Tokio}\cvTag{Redis}\cvTag{HTTP/2}}
+    {2023}
+    {
+        \begin{cvItemize}
+            \item Gateway asíncrono en \textbf{Rust} con control de concurrencia y algoritmos de \textbf{Token Bucket} y \textbf{Sliding Window Counter} respaldados por Redis vía Lua scripts.
+            \item Capaz de gestionar más de \textbf{50,000 req/sec} con bajo consumo de memoria ($<30$ MB RSS) y overhead menor a \textbf{1.2 ms}.
+        \end{cvItemize}
+    }
+

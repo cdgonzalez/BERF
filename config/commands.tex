@@ -1,0 +1,282 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Module:
+%   Command & Component Engine
+%
+% Description:
+%   Defines reusable UI components, section headers, experience entries,
+%   technical badges, and contact layouts for the framework.
+%
+% Author:
+%   Carlos Daniel González Ruiz
+%
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% Contact & Icon Helpers
+%------------------------------------------------------------------------------
+
+% Renders a single contact item with an icon and clickable link
+% Usage: \cvContactItem{\faEnvelope}{mailto:you@example.com}{you@example.com}
+\NewDocumentCommand{\cvContactItem}{m m m}{%
+    \mbox{%
+        \textcolor{cvAccent}{#1}\hspace{1.5mm}%
+        \href{#2}{\textcolor{cvSecondary}{#3}}%
+    }%
+}
+
+% Renders a plain contact item without link (e.g. Location, Phone)
+% Usage: \cvContactText{\faMapMarker*}{Ciudad de México, México}
+\NewDocumentCommand{\cvContactText}{m m}{%
+    \mbox{%
+        \textcolor{cvAccent}{#1}\hspace{1.5mm}%
+        \textcolor{cvSecondary}{#2}%
+    }%
+}
+
+% Separator dot used between contact items in inline headers
+\newcommand{\cvContactSep}{%
+    \hspace{2mm}\textcolor{cvMuted}{\textperiodcentered}\hspace{2mm}%
+}
+
+%------------------------------------------------------------------------------
+% Technical Badges / Tag Pills
+%------------------------------------------------------------------------------
+
+% Renders an inline technology badge for backend skills and tools
+% Usage: \cvTag{Go} \cvTag{Kubernetes} \cvTag{PostgreSQL}
+\NewDocumentCommand{\cvTag}{m}{%
+    \mbox{%
+        \setlength{\fboxsep}{1.2mm}%
+        \colorbox{cvBackground}{%
+            \cvMonoStyle%
+            \fontsize{\cvSmallSize}{9}\selectfont%
+            \textcolor{cvSecondary}{#1}%
+        }%
+    }\hspace{1mm}%
+}
+
+%------------------------------------------------------------------------------
+% Document Header Component
+%------------------------------------------------------------------------------
+
+% Renders the top-level resume header using metadata tokens
+\NewDocumentCommand{\cvHeader}{}{%
+    \begingroup
+        \raggedright
+        % Candidate Name
+        {\cvNameStyle\textcolor{cvPrimary}{\cvName}}\par
+        \vspace{1.5mm}
+        % Professional Headline
+        {\cvTitleStyle\textcolor{cvAccent}{\cvHeadline}}\par
+        \vspace{2.5mm}
+        % Contact Details Bar (Row 1: Location, Email, Phone)
+        {\cvMetadataStyle
+            \cvContactText{\faMapMarker*}{\cvLocation}%
+            \cvContactSep
+            \cvContactItem{\faEnvelope}{mailto:\cvEmail}{\cvEmail}%
+            \cvContactSep
+            \cvContactItem{\faPhone*}{\cvPhone}{\cvPhone}%
+        }\par
+        \vspace{1.5mm}
+        % Contact Details Bar (Row 2: LinkedIn, GitHub, Portfolio/LeetCode)
+        {\cvMetadataStyle
+            \cvContactItem{\faLinkedin}{\cvLinkedinUrl}{linkedin.com/in/\cvLinkedinUser}%
+            \cvContactSep
+            \cvContactItem{\faGithub}{\cvGithubUrl}{github.com/\cvGithubUser}%
+            \cvContactSep
+            \cvContactItem{\faGlobe}{\cvWebsiteUrl}{\cvWebsiteDisplay}%
+        }\par
+    \endgroup
+    \vspace{\cvHeaderGap}
+}
+
+%------------------------------------------------------------------------------
+% Section Header Component
+%------------------------------------------------------------------------------
+
+% Renders a structured section title with a subtle accent rule
+% Usage: \cvSection{Experiencia Laboral}
+\NewDocumentCommand{\cvSection}{m}{%
+    \vspace{\cvSectionGap}
+    \begingroup
+        \raggedright
+        {\cvSectionStyle\textcolor{cvPrimary}{\MakeUppercase{#1}}}\par
+        \vspace{1.5mm}
+        \textcolor{cvAccent}{\rule{\linewidth}{0.8pt}}\par
+    \endgroup
+    \vspace{\cvParagraphGap}
+}
+
+%------------------------------------------------------------------------------
+% Bullet Point List Environment
+%------------------------------------------------------------------------------
+
+% Customized itemize environment with tight vertical spacing for ATS optimization
+\newenvironment{cvItemize}{%
+    \begin{itemize}[
+        leftmargin=1.5em,
+        labelsep=0.6em,
+        itemsep=\cvListGap,
+        parsep=0pt,
+        topsep=1mm,
+        partopsep=0pt,
+        label={\textcolor{cvAccent}{\small\textbullet}}
+    ]%
+}{%
+    \end{itemize}%
+}
+
+%------------------------------------------------------------------------------
+% Experience Item Component
+%------------------------------------------------------------------------------
+
+% Renders a professional work experience entry
+% Usage:
+% \cvExperienceItem
+%     {Senior Backend Engineer}
+%     {Stripe}
+%     {Remoto / San Francisco, CA}
+%     {2022 -- Presente}
+%     {Breve resumen del rol / equipo (opcional)}
+%     {
+%         \begin{cvItemize}
+%             \item Logro orientado a métricas...
+%         \end{cvItemize}
+%     }
+\NewDocumentCommand{\cvExperienceItem}{m m m m +m +m}{%
+    \vspace{\cvJobGap}
+    \noindent
+    \begin{minipage}[t]{\linewidth}
+        % Role & Date Range
+        \noindent
+        \parbox[t]{0.72\linewidth}{%
+            {\cvCompanyStyle\textcolor{cvPrimary}{#1}}%
+            \hspace{2mm}%
+            {\cvBodyStyle\textcolor{cvSecondary}{\textbf{@ #2}}}%
+        }%
+        \hfill
+        \parbox[t]{0.26\linewidth}{%
+            \raggedleft
+            {\cvMetadataStyle\textcolor{cvMuted}{#4}}%
+        }\par
+        \vspace{0.8mm}
+        % Location & Meta
+        \noindent
+        \parbox[t]{\linewidth}{%
+            {\cvMetadataStyle\textcolor{cvMuted}{\faMapMarker*\hspace{1mm}#3}}%
+        }\par
+        % Optional Scope / Summary
+        \ifstrempty{#5}{}{%
+            \vspace{1mm}%
+            \noindent
+            {\cvBodyStyle\textcolor{cvSecondary}{#5}}\par
+        }%
+        % Detailed achievements / bullets
+        \ifstrempty{#6}{}{%
+            \vspace{1mm}%
+            #6\par
+        }%
+    \end{minipage}
+}
+
+%------------------------------------------------------------------------------
+% Project Item Component
+%------------------------------------------------------------------------------
+
+% Renders a project entry with repository link and technologies
+% Usage:
+% \cvProjectItem
+%     {Distributed Cache Engine}
+%     {https://github.com/cdgonzalez/dist-cache}
+%     {github.com/cdgonzalez/dist-cache}
+%     {Go, Raft, gRPC, Redis}
+%     {2023}
+%     {
+%         \begin{cvItemize}
+%             \item Implementación de algoritmo de consenso...
+%         \end{cvItemize}
+%     }
+\NewDocumentCommand{\cvProjectItem}{m m m m m +m}{%
+    \vspace{\cvProjectGap}
+    \noindent
+    \begin{minipage}[t]{\linewidth}
+        % Project Title & Date
+        \noindent
+        \parbox[t]{0.75\linewidth}{%
+            {\cvCompanyStyle\textcolor{cvPrimary}{#1}}%
+            \ifstrempty{#2}{}{%
+                \hspace{2mm}%
+                {\cvMetadataStyle\href{#2}{\textcolor{cvLink}{\faExternalLink*~#3}}}%
+            }%
+        }%
+        \hfill
+        \parbox[t]{0.23\linewidth}{%
+            \raggedleft
+            {\cvMetadataStyle\textcolor{cvMuted}{#5}}%
+        }\par
+        \vspace{1mm}
+        % Tech Stack Tags
+        \ifstrempty{#4}{}{%
+            \noindent
+            {\cvMetadataStyle\textcolor{cvMuted}{\textbf{Stack:}}\hspace{1.5mm}#4}\par
+            \vspace{1mm}
+        }%
+        % Project Bullet Points
+        \ifstrempty{#6}{}{%
+            #6\par
+        }%
+    \end{minipage}
+}
+
+%------------------------------------------------------------------------------
+% Technical Skill Group Component
+%------------------------------------------------------------------------------
+
+% Renders a category of skills with title and comma-separated or badged list
+% Usage: \cvSkillCategory{Lenguajes}{Go, Rust, Python, Java, SQL}
+\NewDocumentCommand{\cvSkillCategory}{m +m}{%
+    \noindent
+    \begin{minipage}[t]{\linewidth}
+        \parbox[t]{0.25\linewidth}{%
+            {\cvBodyStyle\textcolor{cvPrimary}{\textbf{#1}}}%
+        }%
+        \hfill
+        \parbox[t]{0.73\linewidth}{%
+            {\cvBodyStyle\textcolor{cvSecondary}{#2}}%
+        }\par
+        \vspace{1.5mm}
+    \end{minipage}
+}
+
+%------------------------------------------------------------------------------
+% Education & Certification Component
+%------------------------------------------------------------------------------
+
+% Renders an education or certification entry
+% Usage: \cvEducationItem{Ingeniería en Sistemas}{Universidad Nacional}{2018 -- 2022}{Mención de honor}
+\NewDocumentCommand{\cvEducationItem}{m m m +m}{%
+    \vspace{2mm}
+    \noindent
+    \begin{minipage}[t]{\linewidth}
+        \noindent
+        \parbox[t]{0.72\linewidth}{%
+            {\cvCompanyStyle\textcolor{cvPrimary}{#1}}\par
+            \vspace{0.5mm}
+            {\cvBodyStyle\textcolor{cvSecondary}{#2}}%
+        }%
+        \hfill
+        \parbox[t]{0.26\linewidth}{%
+            \raggedleft
+            {\cvMetadataStyle\textcolor{cvMuted}{#3}}%
+        }\par
+        \ifstrempty{#4}{}{%
+            \vspace{1mm}
+            {\cvMetadataStyle\textcolor{cvMuted}{#4}}\par
+        }%
+    \end{minipage}
+    \vspace{1.5mm}
+}
+

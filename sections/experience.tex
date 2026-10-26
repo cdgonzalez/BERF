@@ -1,0 +1,71 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Section:
+%   Work Experience
+%
+% Description:
+%   Chronological professional experience highlighting quantifiable technical
+%   achievements, architectural ownership, scaling milestones, and impact.
+%
+% Author:
+%   Carlos Daniel González Ruiz
+%
+%==============================================================================
+
+\cvSection{Experiencia Laboral}
+
+%------------------------------------------------------------------------------
+% Experience 1: Senior Role
+%------------------------------------------------------------------------------
+\cvExperienceItem
+    {Senior Backend Engineer}
+    {Fintech Solutions Global}
+    {Remoto / Ciudad de México}
+    {2023 -- Presente}
+    {Liderazgo del diseño e implementación del motor de transacciones y conciliación bancaria de alta concurrencia.}
+    {
+        \begin{cvItemize}
+            \item Diseñé y desplegué una arquitectura orientada a eventos con \textbf{Go} y \textbf{Apache Kafka}, procesando más de \textbf{15,000 transacciones por segundo (TPS)} con latencias p99 inferiores a \textbf{45 ms}.
+            \item Optimicé consultas críticas e índices en \textbf{PostgreSQL} y capa de cache en \textbf{Redis}, reduciendo el uso de CPU de base de datos en un \textbf{38\%} durante picos de tráfico.
+            \item Implementé patrones de resiliencia (Circuit Breaker, Idempotency Keys y Retry con Exponential Backoff) eliminando inconsistencias transaccionales y duplicidad de cargos al \textbf{0\%}.
+            \item Migré servicios legacy a contenedores en \textbf{Kubernetes (EKS)} orquestados con Terraform, mejorando el tiempo de despliegue de 45 minutos a \textbf{4 minutos} mediante pipelines de CI/CD.
+        \end{cvItemize}
+    }
+
+%------------------------------------------------------------------------------
+% Experience 2: Mid-Level Role
+%------------------------------------------------------------------------------
+\cvExperienceItem
+    {Backend Software Engineer}
+    {CloudScale Systems}
+    {Ciudad de México, México}
+    {2021 -- 2023}
+    {Desarrollo de microservicios para plataforma SaaS multi-tenant de analítica de datos e ingesta continua.}
+    {
+        \begin{cvItemize}
+            \item Desarrollé servicios gRPC de alta eficiencia en \textbf{Go} y \textbf{Python (FastAPI)}, consumiendo eventos desde colas \textbf{RabbitMQ} para ingesta de telemetría.
+            \item Diseñé esquemas relacionales particionados en PostgreSQL y modelos no relacionales en \textbf{MongoDB}, gestionando un volumen acumulado de más de \textbf{500 GB} diarios.
+            \item Establecí estándares de observabilidad distribuida integrando \textbf{OpenTelemetry}, \textbf{Prometheus} y dashboards en \textbf{Grafana}, reduciendo el MTTR (Mean Time to Resolution) de incidentes en un \textbf{50\%}.
+            \item Mentoricé a 4 desarrolladores junior en buenas prácticas de arquitectura limpia, concurrencia segura (goroutines / channels) y cobertura de pruebas unitarias ($>85\%$).
+        \end{cvItemize}
+    }
+
+%------------------------------------------------------------------------------
+% Experience 3: Junior Role
+%------------------------------------------------------------------------------
+\cvExperienceItem
+    {Junior Software Developer}
+    {TechCore Labs}
+    {Ciudad de México, México}
+    {2020 -- 2021}
+    {Mantenimiento y desarrollo de APIs RESTful para aplicaciones empresariales e integraciones de pagos.}
+    {
+        \begin{cvItemize}
+            \item Implementé endpoints RESTful con autenticación OAuth2 y JWT, integrando pasarelas de pago de terceros (Stripe, Conekta).
+            \item Automaticé la suite de pruebas de integración y pipelines de despliegue mediante GitHub Actions y Docker.
+            \item Refactoricé módulos críticos de acceso a datos reduciendo el tiempo de respuesta promedio de endpoints en un \textbf{25\%}.
+        \end{cvItemize}
+    }
+

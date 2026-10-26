@@ -1,0 +1,67 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Master Document:
+%   main.tex
+%
+% Description:
+%   Root document for the Backend Engineer Resume Framework.
+%   Loads configuration tokens, design engines, and orchestrates
+%   the inclusion of modular resume sections.
+%
+% Author:
+%   Carlos Daniel González Ruiz
+%
+% Compilation Engine:
+%   Compile with XeLaTeX or LuaLaTeX (required by fontspec)
+%
+%==============================================================================
+
+\documentclass[11pt, letterpaper]{article}
+
+%------------------------------------------------------------------------------
+% Framework Engine & Configuration Load Order
+%------------------------------------------------------------------------------
+
+\input{config/packages}
+\input{config/colors}
+\input{config/fonts}
+\input{config/layout}
+\input{config/metadata}
+\input{config/commands}
+
+%------------------------------------------------------------------------------
+% Document Body
+%------------------------------------------------------------------------------
+
+\begin{document}
+
+% Disable page numbers for clean executive presentation
+\pagestyle{empty}
+
+% Header: Name, Headline, and Contact Grid
+\input{sections/header}
+
+% Professional Summary
+\input{sections/summary}
+
+% Technical Skills & Tooling
+\input{sections/skills}
+
+% Core Work Experience
+\input{sections/experience}
+
+% Projects & Systems Architecture
+\input{sections/projects}
+
+% Education
+\input{sections/education}
+
+% Optional Modular Extensions (Uncomment to customize 1-page vs 2-page target)
+% \input{sections/certifications}
+% \input{sections/languages}
+% \input{sections/awards}
+
+\end{document}
+

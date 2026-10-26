@@ -1,0 +1,60 @@
+%==============================================================================
+%
+% Backend Engineer Resume Framework (BERF)
+%
+% Module:
+%   Metadata Engine
+%
+% Description:
+%   Defines the candidate identity, contact information, online profiles,
+%   and document-level PDF metadata for the framework.
+%
+% Author:
+%   Carlos Daniel González Ruiz
+%
+%==============================================================================
+
+%------------------------------------------------------------------------------
+% Candidate Identity
+%------------------------------------------------------------------------------
+
+\newcommand{\cvName}{Carlos Daniel González Ruiz}
+\newcommand{\cvHeadline}{Backend Engineer}
+\newcommand{\cvLocation}{Ciudad de México, México}
+
+%------------------------------------------------------------------------------
+% Contact Details
+%------------------------------------------------------------------------------
+
+\newcommand{\cvEmail}{carlos.gonzalez@example.com}
+\newcommand{\cvPhone}{+52 55 1234 5678}
+
+%------------------------------------------------------------------------------
+% Online Presence & Technical Profiles
+%------------------------------------------------------------------------------
+
+\newcommand{\cvLinkedinUser}{cdgonzalez}
+\newcommand{\cvLinkedinUrl}{https://linkedin.com/in/\cvLinkedinUser}
+
+\newcommand{\cvGithubUser}{cdgonzalez}
+\newcommand{\cvGithubUrl}{https://github.com/\cvGithubUser}
+
+\newcommand{\cvWebsiteDisplay}{cdgonzalez.dev}
+\newcommand{\cvWebsiteUrl}{https://cdgonzalez.dev}
+
+\newcommand{\cvLeetcodeUser}{cdgonzalez}
+\newcommand{\cvLeetcodeUrl}{https://leetcode.com/\cvLeetcodeUser}
+
+%------------------------------------------------------------------------------
+% PDF Document Metadata Injection
+%------------------------------------------------------------------------------
+
+\AtEndPreamble{
+    \hypersetup{
+        pdftitle={\cvName\ - \cvHeadline},
+        pdfauthor={\cvName},
+        pdfsubject={Curriculum Vitae - Backend Engineering},
+        pdfkeywords={Backend Engineer, Software Architecture, Distributed Systems, Cloud, LaTeX, BERF}
+    }
+}
+
